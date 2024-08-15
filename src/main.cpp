@@ -1,7 +1,7 @@
 #include "Arduino.h"
 #include "yboard.h"
 // File names for SD card
-static const std::string FILE_NAME = "/unfiltered.wav";
+static const std::string FILE_NAME = "/recording.wav";
 static const std::string OUT_FILE_NAME = "/filtered.wav";
 
 // For LED breathing effect
@@ -16,7 +16,7 @@ static const int sound_volume = 6;
 static const int recording_volume = 3;
 static const int cutoff_frequency = 1500; // cufoff frequency for filters
 
-// This is all logic to have the LEDs continously change brightness. You do not need to modify this.
+// This is all logic to have the LEDs continously change brightness. You DON'T need to modify this.
 void led_breathing(unsigned long currentMillis) {
     
     if (currentMillis - previousMillis >= 5) {
@@ -46,6 +46,8 @@ void setup() {
     Yboard.set_all_leds_color(255, 255, 255);
 }
 
+
+// You will edit code in this section
 void loop() {
     unsigned long currentMillis = millis();
 
@@ -79,19 +81,18 @@ void loop() {
         //Just play the original sound file
         Yboard.set_all_leds_color(0, 0, 255); // Set the LEDs to green while playing the audio
         Yboard.display_text("Playing: " + FILE_NAME,1);
-        Yboard.play_sound_file(FILE_NAME);
         Yboard.set_all_leds_color(0, 0, 0);
         Yboard.clear_display();
     }
 
     //If button two is pressed, play the sound file
     //If switch two is on, apply a filter to the sound file
-    /*
-    if (Yboard.get_button(2) && Yboard.get_switch(2)) {
+    
+    /*if (Yboard.get_button(2) && Yboard.get_switch(2)) {
         //Apply the filter and save the audio to a new file
         Yboard.set_all_leds_color(0, 0, 255); // Set the LEDs to blue while applying the filter
         Yboard.display_text("Applying filter",1);
-        Yboard.apply_low_pass(FILE_NAME, OUT_FILE_NAME, cutoff_frequency);
+        
         
         //Play the new sound file
         Yboard.set_sound_file_volume(10); // Increase the volume as the filter reduces it
@@ -102,6 +103,7 @@ void loop() {
         Yboard.set_sound_file_volume(sound_volume); // Reset the volume
     }
     */
+    
 
 led_breathing(currentMillis);
     
