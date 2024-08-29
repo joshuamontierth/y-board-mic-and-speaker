@@ -4,7 +4,7 @@
 #include "filters.h"
 #include "display.h"
 
-std::string FILENAME = "/audio_with_tone.wav";
+std::string FILENAME = "/ode_to_joy.wav";
 std::string FILTERED_FILENAME = "/filtered.wav";
 int tone_volume = 5;
 int wav_volume = 5;
